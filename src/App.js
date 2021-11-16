@@ -5,6 +5,8 @@ import Theme from "./UI/Theme"
 import { Login } from "./Pages/Login"
 import { Home } from "./Pages/Home.js"
 import { Movies } from "./Pages/Movies.js"
+import { Error } from "./Pages/Error.js"
+
 import { Shows } from "./Pages/Shows.js"
 import { AuthWrapper } from "./components/AuthWrapper"
 function App() {
@@ -24,6 +26,9 @@ function App() {
             </Route>
             <Route exact path="/shows">
               <Shows />
+            </Route>
+            <Route exact path="/*">
+              <Error />
             </Route>
           </Switch>
         </BrowserRouter>

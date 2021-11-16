@@ -14,7 +14,7 @@ function ElevationScroll(props) {
     })
 
     return React.cloneElement(children, {
-        elevation: trigger ? 4 : 0
+        elevation: trigger ? 0: 0
     })
 }
 
@@ -22,8 +22,8 @@ const useStyles = makeStyles(theme => ({
     appBar: {
         zIndex: theme.zIndex.modal + 1,
         [theme.breakpoints.down('xs')]: {
-            zIndex: 0
-        }
+            zIndex: 1
+        },
     },
     toolbarMargin: {
         ...theme.mixins.toolbar,
@@ -49,7 +49,7 @@ const useStyles = makeStyles(theme => ({
             marginLeft: '0em'
         },
         [theme.breakpoints.down('xs')]: {
-            height: "5em"
+            height: "4em"
         }
     },
     tabContainer: {
@@ -76,7 +76,11 @@ const useStyles = makeStyles(theme => ({
         width: "50px",
         color: "#ffeded",
         backgroundColor: theme.palette.secondary.main,
-        borderRadius: "5px"
+        borderRadius: "5px",
+        [theme.breakpoints.down('xs')]:{
+            height:"40px",
+            width:"40px"
+        }
     },
     drawerIconContainer: {
         marginLeft: "auto",
@@ -105,7 +109,7 @@ const useStyles = makeStyles(theme => ({
         width: "20em",
         minHeight: "100vh",
         [theme.breakpoints.down('xs')]: {
-            width: "100vw"
+            width: "100%"
         }
     },
     drawerText: {

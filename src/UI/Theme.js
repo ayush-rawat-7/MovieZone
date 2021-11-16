@@ -1,4 +1,5 @@
 import { createTheme } from "@material-ui/core";
+import { lightBlue } from "@material-ui/core/colors";
 
 const backgroundColor = "#16213E";
 const backgroundColorLight = "#FF3745";
@@ -7,7 +8,7 @@ export default createTheme({
         common: {
             carrot: "#FF3758",
             carrotLight: "#ff5e79",
-            lightBlue : "#0F3460"
+            lightBlue: "#0F3460"
         },
         primary: {
             main: `${backgroundColor}`
@@ -15,10 +16,11 @@ export default createTheme({
         secondary: {
             main: `${backgroundColorLight}`,
         },
-        
+
 
     },
     typography: {
+        fontSize: 14,
         tab: {
             fontFamily: "Raleway",
             textTransform: "none",
@@ -26,29 +28,32 @@ export default createTheme({
             fontSize: "1rem",
             minWidth: 10,
         },
-        buttons: {
-            fontSize: '1rem',
-            textTransform: 'none',
-            height: '45px',
-            color: 'white',
-            width: '15em',
-        },
         h1: {
             fontWeight: '400',
             lineHeight: 1.5,
             color: 'white',
         },
-        // h3: {
-        //     fontFamily: "Pacifico",
-        //     fontSize: '2.5rem',
-        //     color: arcBlue
-        // },
-        // h4: {
-        //     fontFamily: "Roboto",
-        //     fontSize: '1.75rem',
-        //     color: arcBlue,
-        //     fontWeight: '700',
-        // },
+        h2: {
+            fontWeight: 700,
+            // color: backgroundColorLight
+        },
+        h3: {
+            fontFamily: "Roboto",
+            fontSize: '2.5rem',
+            fontWeight: 700,
+            color: '#fff',
+        },
+        h4: {
+            fontWeight: 700,
+
+        },
+        h5: {
+            fontFamily: "Roboto",
+            fontSize: '1.5rem',
+            marginRight: "auto",
+            marginLeft: "auto",
+            fontWeight: '400',
+        },
         // subtitle1: {
         //     fontSize: '1.25rem',
         //     fontWeight: '300',
@@ -73,5 +78,19 @@ export default createTheme({
         //     fontFamily: "Roboto",
         //     fontWeight: "bold",
         // }
+    },
+    overrides: {
+        MuiCardMedia: {
+            root: {
+                height: 400,
+                minWidth: 300
+            },
+        },
+        MuiCard: {
+            root: {
+                maxWidth: 500,
+                height: "auto",
+            }
+        },
     }
 })

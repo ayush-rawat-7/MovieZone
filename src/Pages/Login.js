@@ -17,11 +17,27 @@ const useStyles = makeStyles(theme => ({
         marginBottom: "-1.2em"
     },
     loginButton: {
-        ...theme.typography.buttons,
+        fontSize: '1.4rem',
+        textTransform: 'none',
+        height: '60px',
+        color: 'white',
+        width: '16em',
+        borderRadius: "5px",
         backgroundColor: theme.palette.common.carrot,
         "&:hover": {
             backgroundColor: theme.palette.common.carrotLight
         },
+        [theme.breakpoints.down('sm')]: {
+            fontSize: '1.2rem',
+            width: "14em",
+            height: "50px"
+        },
+        [theme.breakpoints.down('xs')]: {
+            fontSize: '1.2rem',
+            width: "10em",
+            height: "50px",
+            marginTop:"-1em"
+        }
     },
     title: {
         marginBottom: "1.25em",
@@ -36,6 +52,9 @@ const useStyles = makeStyles(theme => ({
         opacity: "0.3"
     },
     h1: {
+        [theme.breakpoints.down('sm')]: {
+            fontSize: "5em",
+        },
         [theme.breakpoints.down('xs')]: {
             fontSize: "4em",
         },
@@ -68,6 +87,7 @@ export const Login = () => {
     const classes = useStyles();
     const theme = useTheme();
     const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
+    const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
     if (user) {
         history.push("/home")
     }
@@ -77,7 +97,7 @@ export const Login = () => {
             <Grid item> <img className={classes.back} src={matchesXS ? avengersLogo : loginBackground} alt="" /></Grid>
             <Grid item direction="column" className={classes.title}>
                 <Typography variant="h1" className={classes.h1}>MovieZone</Typography>
-                <Typography style={{ marginLeft: matchesXS ? "1em" : "10em", marginTop: matchesXS ? "-1em" : "-1.5em" }} variant="body1" paragraph>A Place For Your Interest</Typography>
+                <Typography style={{ marginLeft: matchesXS ? "3em" : matchesSM ? "8em" : "10em", marginTop: matchesXS ? "-1em" : "-1.5em" }} variant="body1" paragraph>A Place For Your Interest</Typography>
             </Grid>
             <Grid item>
                 <Button variant="contained" onClick={loginWithRedirect} className={classes.loginButton}>Login/Signup</Button>
