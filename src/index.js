@@ -10,12 +10,12 @@ ReactDOM.render(
     <Auth0Provider
       domain={process.env.REACT_APP_AUTH0_DOMAIN}
       clientId={process.env.REACT_APP_AUTH0_CLIENT_ID}
-      redirectUri="https://moviezonewebapp.netlify.app/home"
+      redirectUri={window.location.origin}
       cacheLocation="localstorage"
     >
       <MoviesProvider>
         <ShowsProvider>
-            <App />
+          <App />
         </ShowsProvider>
       </MoviesProvider>
     </Auth0Provider>
