@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom'
 import { useMovieContext } from '../context/movieContext'
 import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
-
+import altPoster from "../utilities/images/altPoster.png"
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar'
 import 'react-circular-progressbar/dist/styles.css'
 import styled from 'styled-components'
@@ -89,7 +89,7 @@ export const SingleMovie = () => {
       width: 100%;
       height: 100%;
       opacity: 0.3;
-      background-image: url(${imgUrl + poster_path});
+      background-image: url(${altPoster});
       background-repeat: no-repeat;
       background-position: 50% 0;
       background-size: cover;
@@ -99,7 +99,7 @@ export const SingleMovie = () => {
         <Grid item container className={classes.dataContainer}>
             <Grid item container md={4} justifyContent={matchesSM ? "center" : undefined}>
                 <Grid item className={classes.posterContainer} style={{ margin: matchesMD ? "0 2em" : '0 4em' }}>
-                    <img src={imgUrl + poster_path} className={classes.poster} alt='Poster' />
+                    <img src={poster_path === null ? altPoster : imgUrl + poster_path} className={classes.poster} alt='Poster' />
                 </Grid>
             </Grid>
             <Grid item container direction='column' md={8} style={{ color: '#f10606' }}>
@@ -194,7 +194,7 @@ export const SingleMovie = () => {
                         className={classes.mainContainer}>
                         {
                             backdrop_path === null ?
-                                <Wrapper1>
+                                <Wrapper1 item container>
                                     {wrapperContent}
                                 </Wrapper1>
                                 :

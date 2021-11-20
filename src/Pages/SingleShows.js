@@ -11,6 +11,7 @@ import Switch from '@material-ui/core/Switch';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar'
 import 'react-circular-progressbar/dist/styles.css'
 import styled from 'styled-components'
+import altPoster from "../utilities/images/altPoster.png"
 
 export const SingleShows = () => {
     let history = useHistory()
@@ -97,7 +98,7 @@ export const SingleShows = () => {
     };
     const Wrapper = styled.div`
     position: relative;
-    min-width: 98.9vw;
+    min-width: 98.9%;
     background-color:#111;
     ::before {
       content: '';
@@ -116,6 +117,7 @@ export const SingleShows = () => {
   `
     const Wrapper1 = styled.div`
     position: relative;
+    min-width: 98.9%;
     background-color: #111;
     ::before {
       content: '';
@@ -136,7 +138,7 @@ export const SingleShows = () => {
         <Grid item container className={classes.dataContainer}>
             <Grid item container md={3} justifyContent={matchesSM ? "center" : undefined}>
                 <Grid item className={classes.posterContainer} style={{ margin: matchesMD ? "0 2em" : '0 4em' }}>
-                    <img src={imgUrl + poster_path} className={classes.poster} alt='Poster' />
+                    <img src={poster_path === null ? altPoster : imgUrl + poster_path} className={classes.poster} alt='Poster' />
                 </Grid>
             </Grid>
             <Grid item container direction='column' md={9} style={{ color: '#f10606', paddingRight: matchesSM ? 0 : "10px" }}>

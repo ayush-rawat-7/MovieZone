@@ -156,8 +156,8 @@ export const useStyles = makeStyles(theme => ({
         height: 400,
         [theme.breakpoints.down('xs')]: {
             height: 250,
-            display:"block",
-            margin:"auto"
+            display: "block",
+            margin: "auto"
         }
     },
     seasonData: {
@@ -178,7 +178,8 @@ export const useStyles = makeStyles(theme => ({
         marginTop: "1em",
         [theme.breakpoints.down('xs')]: {
             marginTop: "0.5em",
-            fontSize: "1rem"
+            fontSize: "1rem",
+            padding: "0 5px",
         }
     },
 }))
