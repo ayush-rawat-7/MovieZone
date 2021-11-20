@@ -120,11 +120,17 @@ export const useStyles = makeStyles(theme => ({
         },
         [theme.breakpoints.down('sm')]: {
             width: "35em",
-            height: 400
+            height: 400,
+            "&:hover": {
+                boxShadow: `none`
+            },
         },
         [theme.breakpoints.down('xs')]: {
             width: "19em",
-            height: 250
+            height: 250,
+            "&:hover": {
+                boxShadow: `none`
+            },
         }
 
     },
