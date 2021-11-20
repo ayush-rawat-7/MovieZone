@@ -8,7 +8,13 @@ export const useStyles = makeStyles(theme => ({
     },
     title: {
         color: "#ffffff",
-        zIndex: 2000
+        zIndex: 2000,
+        [theme.breakpoints.down('sm')]: {
+            fontSize: "2.3rem"
+        },
+        [theme.breakpoints.down('xs')]:{
+            fontSize:"2rem"
+        }
     },
     backHome: {
         width: "20em",
@@ -20,12 +26,23 @@ export const useStyles = makeStyles(theme => ({
         backgroundColor: theme.palette.secondary.main,
         "&:hover": {
             backgroundColor: theme.palette.secondary.light
+        },
+        [theme.breakpoints.down('sm')]: {
+            width: "15em",
+            height: "3em",
+            fontSize: "1rem",
+        },
+        [theme.breakpoints.down('xs')]: {
+            width: "12em",
+            height: "3em",
+            fontSize: "0.9rem",
         }
     },
     backImg: {
         position: "absolute",
         width: "100%",
         height: "100%",
-        opacity: "0.7"
+        opacity: "0.7",
+        objectFit:'cover'
     },
 }))

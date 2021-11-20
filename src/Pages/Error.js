@@ -16,7 +16,7 @@ export const Error = () => {
             className={classes.mainContainer}
         >
             <img src={error} className={classes.backImg} alt="Joker" />
-            <Typography variant="h2" className={classes.title}>
+            <Typography variant="h2" align="center" className={classes.title}>
                 OOPS!  Web Page Not Found
             </Typography>
             <Button component={NavLink} to="/" className={classes.backHome} variant="contained" >Back To Home</Button>
