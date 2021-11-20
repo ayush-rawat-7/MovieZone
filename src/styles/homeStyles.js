@@ -220,11 +220,13 @@ export const useStyles = makeStyles(theme => ({
         borderRadius: 25,
         [theme.breakpoints.down('sm')]: {
             height: "300px",
-            width: "70vw"
+            width: "70vw",
+            fontSize:"1.4rem"
         },
         [theme.breakpoints.down('xs')]: {
             height: "180px",
-            width: "80vw"
+            width: "80vw",
+            fontSize: "1.5em",
         }
     },
     submit: {
