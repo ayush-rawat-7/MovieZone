@@ -80,7 +80,7 @@ export const SingleShows = () => {
             </div>
         );
     }
-
+    console.log(single_show);
     TabPanel.propTypes = {
         children: PropTypes.node,
         index: PropTypes.any.isRequired,
@@ -134,12 +134,12 @@ export const SingleShows = () => {
   `
     const wrapperContent = (
         <Grid item container className={classes.dataContainer}>
-            <Grid item container md={4} justifyContent={matchesSM ? "center" : undefined}>
+            <Grid item container md={3} justifyContent={matchesSM ? "center" : undefined}>
                 <Grid item className={classes.posterContainer} style={{ margin: matchesMD ? "0 2em" : '0 4em' }}>
                     <img src={imgUrl + poster_path} className={classes.poster} alt='Poster' />
                 </Grid>
             </Grid>
-            <Grid item container direction='column' md={8} style={{ color: '#f10606', paddingRight: matchesSM ? 0 : "10px" }}>
+            <Grid item container direction='column' md={9} style={{ color: '#f10606', paddingRight: matchesSM ? 0 : "10px" }}>
                 <Typography variant='h2' align={matchesSM ? "center" : undefined} className={classes.head}>
                     {title}({year}){' '}
                     <span style={
@@ -239,14 +239,18 @@ export const SingleShows = () => {
                                         const { air_date, episode_count, name, overview, poster_path } = season
                                         return <TabPanel value={value} index={idx}>
                                             <div className={classes.seasonContainer}>
-                                                <div style={{ height: '100%' }}>
-                                                    <img className={classes.seasonImg} src={imgUrl + poster_path} alt="" />
-                                                </div>
+                                                {
+                                                    poster_path !== null ?
+                                                        <div style={{ height: '100%' }}>
+                                                            <img className={classes.seasonImg} src={imgUrl + poster_path} alt="" />
+                                                        </div>
+                                                        : undefined
+                                                }
                                                 <div className={classes.seasonData}>
                                                     <Typography variant="h4" className={classes.seasonsHead} style={{ fontStyle: "italic" }}>{name}</Typography>
-                                                    <Typography variant="body1" className={classes.seasonContent} >Air Date: {air_date}</Typography>
+                                                    <Typography variant="body1" className={classes.seasonContent} >Air Date: {air_date || "Not Available"}</Typography>
                                                     <Typography variant="body1" className={classes.seasonContent} >Episodes: {episode_count}</Typography>
-                                                    <Typography variant="body1" className={classes.seasonContent} style={{ marginBottom: "1em" }}>Overview: {overview || "Not Available"}</Typography>
+                                                    <Typography variant="body1" className={classes.seasonContent} style={{ marginBottom: "1em" }}>{overview || "Not Available"}</Typography>
                                                 </div>
                                             </div>
                                         </TabPanel>
@@ -258,7 +262,7 @@ export const SingleShows = () => {
                 }
                 {/* seasons end*/}
                 <Button variant='contained' className={classes.button} color='secondary' onClick={history.goBack}>
-                    Back To Movies
+                    Back To Shows
                 </Button>
             </Grid>
         </Grid>

@@ -103,18 +103,7 @@ export const useStyles = makeStyles(theme => ({
             marginBottom: "2em"
         }
     },
-    seasonsHead: {
-        [theme.breakpoints.down('xs')]: {
-            fontSize: "1.5rem"
-        }
-    },
-    seasonContent: {
-        marginTop: "1em",
-        [theme.breakpoints.down('xs')]: {
-            marginTop: "0.5em",
-            fontSize:"1.2rem"
-        }
-    },
+
     dataContainer: {
         position: 'relative',
         marginTop: "7em",
@@ -158,15 +147,38 @@ export const useStyles = makeStyles(theme => ({
     },
     seasonContainer: {
         display: "flex",
+        width: "100%",
+        [theme.breakpoints.down('xs')]: {
+            flexDirection: "column",
+        }
     },
     seasonImg: {
         height: 400,
         [theme.breakpoints.down('xs')]: {
-            height:250
-        }        
+            height: 250,
+            display:"block",
+            margin:"auto"
+        }
     },
     seasonData: {
         marginTop: "0.8em",
-        marginLeft: "0.5em"
+        marginLeft: "0.5em",
+        width: "100%",
+        [theme.breakpoints.down('xs')]: {
+            marginLeft: "0em",
+            textAlign: "center"
+        }
+    },
+    seasonsHead: {
+        [theme.breakpoints.down('xs')]: {
+            fontSize: "1.5rem"
+        }
+    },
+    seasonContent: {
+        marginTop: "1em",
+        [theme.breakpoints.down('xs')]: {
+            marginTop: "0.5em",
+            fontSize: "1rem"
+        }
     },
 }))
