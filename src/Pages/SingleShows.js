@@ -16,11 +16,9 @@ export const SingleShows = () => {
     let history = useHistory()
     const [value, setValue] = React.useState(0);
     const [checked, setChecked] = React.useState(false);
-
     const toggleChecked = () => {
         setChecked((prev) => !prev);
     };
-
     const classes = useStyles()
     const { id } = useParams()
     const { getSingleShow, single_show, showsLoading, showsError } = useShowsContext()
@@ -70,15 +68,10 @@ export const SingleShows = () => {
     }
     function TabPanel(props) {
         const { children, value, index, ...other } = props;
-
         return (
-            <div
-                role="tabpanel"
-                hidden={value !== index}
-                id={`scrollable-auto-tabpanel-${index}`}
+            <div role="tabpanel" hidden={value !== index} id={`scrollable-auto-tabpanel-${index}`}
                 aria-labelledby={`scrollable-auto-tab-${index}`}
-                {...other}
-            >
+                {...other}>
                 {value === index && (
                     <Box style={{ backgroundColor: theme.palette.primary.main }}>
                         <Typography>{children}</Typography>
@@ -140,33 +133,14 @@ export const SingleShows = () => {
     }
   `
     const wrapperContent = (
-        <Grid item container
-            className={
-                classes.dataContainer
-            }
-        >
+        <Grid item container className={classes.dataContainer}>
             <Grid item container md={4} justifyContent={matchesSM ? "center" : undefined}>
-                <Grid item className={classes.posterContainer}
-                    style={
-                        { margin: matchesMD ? "0 2em" : '0 4em' }
-                    }>
-                    <img src={
-                        imgUrl + poster_path
-                    }
-                        className={
-                            classes.poster
-                        }
-                        alt='Poster' />
+                <Grid item className={classes.posterContainer} style={{ margin: matchesMD ? "0 2em" : '0 4em' }}>
+                    <img src={imgUrl + poster_path} className={classes.poster} alt='Poster' />
                 </Grid>
             </Grid>
-            <Grid item container direction='column'
-                md={8}
-                style={
-                    { color: '#f10606', paddingRight: matchesSM ? 0 : "10px" }
-                }>
-                <Typography variant='h2'
-                    align={matchesSM ? "center" : undefined}
-                    className={classes.head}>
+            <Grid item container direction='column' md={8} style={{ color: '#f10606', paddingRight: matchesSM ? 0 : "10px" }}>
+                <Typography variant='h2' align={matchesSM ? "center" : undefined} className={classes.head}>
                     {title}({year}){' '}
                     <span style={
                         {
@@ -177,14 +151,7 @@ export const SingleShows = () => {
                         ({original_language})
                     </span>
                     {' '} </Typography>
-                <Typography variant='body1'
-                    align={matchesSM ? "center" : undefined}
-                    style={
-                        { marginTop: '-1em' }
-                    }
-                    className={
-                        classes.text
-                    }>
+                <Typography variant='body1' align={matchesSM ? "center" : undefined} style={{ marginTop: '-1em' }} className={classes.text}>
                     {
                         status !== 'Ended' ? 'On Going' : status
                     }
@@ -204,67 +171,42 @@ export const SingleShows = () => {
                     }
                 </Typography>
                 <div style={{
-                    width: matchesXS ? "100px" : matchesMD ? "110px" : '140px',
-                    margin: matchesXS ? "2em auto" : matchesSM ? "1em auto" : '1em 0'
+                    width: matchesXS ? "100px" : matchesMD ? "110px" : '140px', margin: matchesXS ? "2em auto" : matchesSM ? "1em auto" : '1em 0'
                 }}>
-                    <CircularProgressbar value={
-                        vote_average * 10
-                    }
-                        text={
-                            `${vote_average * 10
-                            }%`
-                        }
-                        styles={
-                            buildStyles({ pathColor: `#25af47`, textColor: '#fff', trailColor: '#25af4745' })
-                        } />
+                    <CircularProgressbar value={vote_average * 10} text={`${vote_average * 10}%`} styles={
+                        buildStyles({ pathColor: `#25af47`, textColor: '#fff', trailColor: '#25af4745' })
+                    } />
                 </div>
                 <div className={classes.textContainer}>
-                    <Typography align={matchesSM ? "center" : undefined}
-                        variant='h4' className={classes.movieDetailHead}>Release Date:</Typography>
-                    <Typography align={matchesSM ? "center" : undefined}
-                        className={classes.text}
-                        variant='body1'>
+                    <Typography align={matchesSM ? "center" : undefined} variant='h4' className={classes.movieDetailHead}>
+                        Release Date:</Typography>
+                    <Typography align={matchesSM ? "center" : undefined} className={classes.text} variant='body1'>
                         {release_date} </Typography>
                 </div>
                 {
                     spoken_languages ? (
                         <div className={classes.textContainer}>
-                            <Typography align={matchesSM ? "center" : undefined}
-                                variant='h4' className={classes.movieDetailHead}>Spoken Languages:</Typography>
-                            <Typography align={matchesSM ? "center" : undefined}
-                                className={classes.text}
-                                variant='body1'>
+                            <Typography align={matchesSM ? "center" : undefined} variant='h4' className={classes.movieDetailHead}>
+                                Spoken Languages:</Typography>
+                            <Typography align={matchesSM ? "center" : undefined} className={classes.text} variant='body1'>
                                 {lang} </Typography>
                         </div>
                     ) : (undefined)
                 }
-
                 {
                     tagline ? (
-                        <div className={
-                            classes.textContainer
-                        }>
+                        <div className={classes.textContainer}>
                             <Typography align={matchesSM ? "center" : undefined}
                                 variant='h4' className={classes.movieDetailHead}>Tagline:</Typography>
-                            <Typography align={matchesSM ? "center" : undefined}
-                                className={
-                                    classes.text
-                                }
-                                variant='body1'>
+                            <Typography align={matchesSM ? "center" : undefined} className={classes.text} variant='body1'>
                                 {tagline} </Typography>
                         </div>
                     ) : (undefined)
                 }
-                <div className={
-                    classes.textContainer
-                }>
+                <div className={classes.textContainer}>
                     <Typography variant='h4' align={matchesSM ? "center" : undefined}
                         className={classes.movieDetailHead}>Overview:</Typography>
-                    <Typography align={matchesSM ? "center" : undefined}
-                        className={
-                            classes.text
-                        }
-                        variant='body1'>
+                    <Typography align={matchesSM ? "center" : undefined} className={classes.text} variant='body1'>
                         {overview} </Typography>
                 </div>
                 <Grid item container justifyContent={matchesSM ? "center" : undefined} alignItems="flex-end">
@@ -314,17 +256,8 @@ export const SingleShows = () => {
                         </>
                         : undefined : undefined
                 }
-
                 {/* seasons end*/}
-
-                <Button variant='contained'
-                    className={
-                        classes.button
-                    }
-                    color='secondary'
-                    onClick={
-                        history.goBack
-                    }>
+                <Button variant='contained' className={classes.button} color='secondary' onClick={history.goBack}>
                     Back To Movies
                 </Button>
             </Grid>
@@ -333,38 +266,22 @@ export const SingleShows = () => {
     return (
         <> {
             showsLoading ? (
-                <div className={
-                    classes.loading
-                }></div>
+                <div className={classes.loading}></div>
             ) : showsError ? (
                 <Grid item container direction='column' justifyContent='center'>
-                    <Typography variant='h2'
-                        className={
-                            classes.errorContent
-                        }>
+                    <Typography variant='h2' className={classes.errorContent}>
                         Something Went Wrong!
                     </Typography>
-                    <Button variant='contained'
-                        className={
-                            classes.errorButton
-                        }
-                        onClick={
-                            () => window.location.reload()
-                        }>
+                    <Button variant='contained' className={classes.errorButton} onClick={() => window.location.reload()}>
                         Try Again
                     </Button>
                 </Grid>
             ) : (
                 <>
                     <Header />
-                    <div className={
-                        classes.toolbarMargin
-                    }></div>
-                    {/* className={classes.backgroundContainer} */}
+                    <div className={classes.toolbarMargin}></div>
                     <Grid container direction='row'
-                        className={
-                            classes.mainContainer
-                        }>
+                        className={classes.mainContainer}>
                         {
                             backdrop_path === null ?
                                 <Wrapper1>

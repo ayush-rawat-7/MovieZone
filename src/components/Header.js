@@ -122,7 +122,6 @@ const useStyles = makeStyles(theme => ({
         opacity: 1
     },
 }))
-
 export const Header = () => {
     const { single_movie } = useMovieContext();
     const { single_show } = useShowsContext();
@@ -133,17 +132,14 @@ export const Header = () => {
     const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent)
     const matchesMD = useMediaQuery(theme.breakpoints.down('md'))
     const matchesXS = useMediaQuery(theme.breakpoints.down('xs'))
-
     const [openDrawer, setOpenDrawer] = React.useState(false);
     const { logout } = useAuth0();
     const [value, setValue] = React.useState(0);
-
     const handleChange = (e, value) => {
         setValue(value)
     }
-
     React.useEffect(() => {
-        if (window.location.pathname === "/home" && value !== 0) {
+        if (window.location.pathname === "/" && value !== 0) {
             setValue(0);
         }
         else if (window.location.pathname === "/movies" && value !== 1) {
@@ -159,7 +155,6 @@ export const Header = () => {
             setValue(2);
         }
     }, [value, id, idx])
-
     const tabs = (
         <>
             <Tabs
@@ -197,7 +192,6 @@ export const Header = () => {
             </Button>
         </>
     )
-
     const drawer = (
         <>
             <SwipeableDrawer
@@ -268,8 +262,7 @@ export const Header = () => {
             </SwipeableDrawer>
             <IconButton onClick={() => setOpenDrawer(!openDrawer)}
                 disableRipple
-                className={classes.drawerIconContainer}
-            >
+                className={classes.drawerIconContainer}>
                 <MenuIcon className={classes.drawerIcon} />
             </IconButton>
         </>
@@ -278,7 +271,7 @@ export const Header = () => {
         <ElevationScroll>
             <AppBar position="fixed" className={classes.appBar}>
                 <Toolbar disableGutters>
-                    <Button component={Link} to="/home" className={classes.logoContainer} disableRipple>
+                    <Button component={Link} to="/" className={classes.logoContainer} disableRipple>
                         <img src={logo} alt="MovieZone Logo" className={classes.logo} />
                     </Button>
                     {matchesMD ? drawer : tabs}

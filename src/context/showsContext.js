@@ -14,7 +14,6 @@ import { useReducer } from 'react';
 import reducer from "../reducers/showsReducer"
 
 const ShowContext = React.createContext();
-
 const initialState = {
     showsLoading: false,
     showsError: false,
@@ -25,10 +24,8 @@ const initialState = {
     single_show: [],
     query: ""
 }
-
 export const ShowsProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
-
     const fetchMostPopularShows = async () => {
         dispatch({ type: GET_POPULAR_SHOWS_BEGIN })
         try {
@@ -54,7 +51,6 @@ export const ShowsProvider = ({ children }) => {
             dispatch({ type: GET_SEARCHED_SHOWS_ERROR })
         }
     }
-
     const getSingleShow = async (id) => {
         dispatch({ type: GET_SINGLE_SHOW_BEGIN });
         let searchURL = `https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.REACT_APP_API_KEY}`;
@@ -66,7 +62,6 @@ export const ShowsProvider = ({ children }) => {
             dispatch({ type: GET_SINGLE_SHOW_ERROR })
         }
     }
-
     useEffect(() => {
         fetchMostPopularShows()
     }, [])

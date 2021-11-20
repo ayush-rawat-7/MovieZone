@@ -11,7 +11,6 @@ const useStyles = makeStyles(theme => ({
         objectFit:"cover"
     },
 }))
-
 export const SingleCard = (props) => {
     const classes = useStyles();
     const { img, title } = props;

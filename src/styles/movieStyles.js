@@ -129,7 +129,7 @@ export const useStyles = makeStyles(theme => ({
         [theme.breakpoints.down('xs')]: {
             width: "18em",
             height: "auto",
-            margin: "0em 1em 2em 1em",
+            margin: "0em 1em 2em 0em",
         },
     },
     cardLink:{

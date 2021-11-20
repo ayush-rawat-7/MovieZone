@@ -10,27 +10,6 @@ import { Footer } from '../components/Footer'
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar'
 import 'react-circular-progressbar/dist/styles.css'
 import styled from 'styled-components'
-
-
-
-
-
-
-
-
-// style from sm breakpoint
-
-
-
-
-
-
-
-
-
-
-
-
 export const SingleMovie = () => {
     let history = useHistory()
     const classes = useStyles()
@@ -117,33 +96,14 @@ export const SingleMovie = () => {
     }
   `
     const wrapperContent = (
-        <Grid item container
-            className={
-                classes.dataContainer
-            }
-        >
+        <Grid item container className={classes.dataContainer}>
             <Grid item container md={4} justifyContent={matchesSM ? "center" : undefined}>
-                <Grid item className={classes.posterContainer}
-                    style={
-                        { margin: matchesMD ? "0 2em" : '0 4em' }
-                    }>
-                    <img src={
-                        imgUrl + poster_path
-                    }
-                        className={
-                            classes.poster
-                        }
-                        alt='Poster' />
+                <Grid item className={classes.posterContainer} style={{ margin: matchesMD ? "0 2em" : '0 4em' }}>
+                    <img src={imgUrl + poster_path} className={classes.poster} alt='Poster' />
                 </Grid>
             </Grid>
-            <Grid item container direction='column'
-                md={8}
-                style={
-                    { color: '#f10606' }
-                }>
-                <Typography variant='h2'
-                    align={matchesSM ? "center" : undefined}
-                    className={classes.head}>
+            <Grid item container direction='column' md={8} style={{ color: '#f10606' }}>
+                <Typography variant='h2' align={matchesSM ? "center" : undefined} className={classes.head}>
                     {title}({year}){' '}
                     <span style={
                         {
@@ -154,14 +114,7 @@ export const SingleMovie = () => {
                         ({original_language})
                     </span>
                     {' '} </Typography>
-                <Typography variant='body1'
-                    align={matchesSM ? "center" : undefined}
-                    style={
-                        { marginTop: '-1em' }
-                    }
-                    className={
-                        classes.text
-                    }>
+                <Typography variant='body1' align={matchesSM ? "center" : undefined} style={{ marginTop: '-1em' }} className={classes.text}>
                     {
                         status !== 'Released' ? 'Not Released' : status
                     }
@@ -171,27 +124,14 @@ export const SingleMovie = () => {
                     {
                         runtime === 0 ? 'Not Available' : runtime + 'min'
                     } </Typography>
-                <div style={{
-                    width: matchesXS ? "100px" : matchesMD ? "110px" : '140px',
-                    margin: matchesXS ? "2em auto" : matchesSM ? "1em auto" : '1em 0'
-                }}>
-                    <CircularProgressbar value={
-                        vote_average * 10
-                    }
-                        text={
-                            `${vote_average * 10
-                            }%`
-                        }
-                        styles={
-                            buildStyles({ pathColor: `#25af47`, textColor: '#fff', trailColor: '#25af4745' })
-                        } />
+                <div style={{ width: matchesXS ? "100px" : matchesMD ? "110px" : '140px', margin: matchesXS ? "2em auto" : matchesSM ? "1em auto" : '1em 0' }}>
+                    <CircularProgressbar value={vote_average * 10} text={`${vote_average * 10}%`} styles={
+                        buildStyles({ pathColor: `#25af47`, textColor: '#fff', trailColor: '#25af4745' })} />
                 </div>
                 <div className={classes.textContainer}>
-                    <Typography align={matchesSM ? "center" : undefined}
-                        variant='h4' className={classes.movieDetailHead}>Release Date:</Typography>
-                    <Typography align={matchesSM ? "center" : undefined}
-                        className={classes.text}
-                        variant='body1'>
+                    <Typography align={matchesSM ? "center" : undefined} variant='h4' className={classes.movieDetailHead}>
+                        Release Date:</Typography>
+                    <Typography align={matchesSM ? "center" : undefined} className={classes.text} variant='body1'>
                         {release_date} </Typography>
                 </div>
                 {
@@ -206,43 +146,23 @@ export const SingleMovie = () => {
                         </div>
                     ) : (undefined)
                 }
-
                 {
                     tagline ? (
-                        <div className={
-                            classes.textContainer
-                        }>
+                        <div className={classes.textContainer}>
                             <Typography align={matchesSM ? "center" : undefined}
                                 variant='h4' className={classes.movieDetailHead}>Tagline:</Typography>
-                            <Typography align={matchesSM ? "center" : undefined}
-                                className={
-                                    classes.text
-                                }
-                                variant='body1'>
+                            <Typography align={matchesSM ? "center" : undefined} className={classes.text} variant='body1'>
                                 {tagline} </Typography>
                         </div>
                     ) : (undefined)
                 }
-                <div className={
-                    classes.textContainer
-                }>
+                <div className={classes.textContainer}>
                     <Typography variant='h4' align={matchesSM ? "center" : undefined}
                         className={classes.movieDetailHead}>Overview:</Typography>
-                    <Typography align={matchesSM ? "center" : undefined}
-                        className={
-                            classes.text
-                        }
-                        variant='body1'>
+                    <Typography align={matchesSM ? "center" : undefined} className={classes.text} variant='body1'>
                         {overview} </Typography>
                 </div>
-                <Button variant='contained'
-                    className={
-                        classes.button
-                    }
-                    color='secondary'
-                    onClick={
-                        history.goBack
-                    }>
+                <Button variant='contained' className={classes.button} color='secondary' onClick={history.goBack}>
                     Back To Movies
                 </Button>
             </Grid>
@@ -256,16 +176,10 @@ export const SingleMovie = () => {
                 }></div>
             ) : moviesError ? (
                 <Grid item container direction='column' justifyContent='center'>
-                    <Typography variant='h2'
-                        className={
-                            classes.errorContent
-                        }>
+                    <Typography variant='h2' className={classes.errorContent}>
                         Something Went Wrong!
                     </Typography>
-                    <Button variant='contained'
-                        className={
-                            classes.errorButton
-                        }
+                    <Button variant='contained' className={classes.errorButton}
                         onClick={
                             () => window.location.reload()
                         }>
@@ -275,14 +189,9 @@ export const SingleMovie = () => {
             ) : (
                 <>
                     <Header />
-                    <div className={
-                        classes.toolbarMargin
-                    }></div>
-                    {/* className={classes.backgroundContainer} */}
+                    <div className={classes.toolbarMargin}></div>
                     <Grid container direction='row'
-                        className={
-                            classes.mainContainer
-                        }>
+                        className={classes.mainContainer}>
                         {
                             backdrop_path === null ?
                                 <Wrapper1>

@@ -74,7 +74,7 @@ export const Movies = () => {
                                 >Try Again</Button>
                             </Grid>
                             :
-                            <Grid item container justifyContent='center' style={{ margin: "1em 0em 5em 0em" }} >
+                            <Grid item container justifyContent='center' style={{ margin:"1em 0em 5em 0em" }} >
                                 {
                                     searchedMovies && query ?
                                         searchedMovies.length === 0 ?

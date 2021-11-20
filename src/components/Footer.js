@@ -56,7 +56,6 @@ export const Footer = () => {
             className={classes.footerContainer}
             direction="column"
             alignItems='center'
-
         >
             <Grid item >
                 <img src={logo} alt="LOGO" className={classes.logo} />

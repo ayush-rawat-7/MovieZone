@@ -39,9 +39,6 @@ const movies_reducer = (state, action) => {
             searchedMovies: action.payload
         }
     }
-
-
-
     if (action.type === GET_SINGLE_MOVIE_BEGIN) {
         return { ...state, moviesLoading: true }
     }

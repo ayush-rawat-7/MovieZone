@@ -20,7 +20,7 @@ export const Error = () => {
             <Typography variant="h2" className={classes.title}>
                 OOPS!  Web Page Not Found
             </Typography>
-            <Button component={NavLink} to="/home" className={classes.backHome} variant="contained" >Back To Home</Button>
+            <Button component={NavLink} to="/" className={classes.backHome} variant="contained" >Back To Home</Button>
         </Grid>
     )
 }

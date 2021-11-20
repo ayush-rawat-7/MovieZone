@@ -38,7 +38,6 @@ const shows_reducer = (state, action) => {
             searchedShows: action.payload
         }
     }
-
     if (action.type === GET_SINGLE_SHOW_BEGIN) {
         return { ...state, showsLoading: true }
     }
@@ -52,7 +51,6 @@ const shows_reducer = (state, action) => {
             single_show: action.payload
         }
     }
-
     if (action.type === GET_SEARCH_QUERY) {
         return {
             ...state,
@@ -60,5 +58,4 @@ const shows_reducer = (state, action) => {
         }
     }
 }
-
 export default shows_reducer;

@@ -14,8 +14,6 @@ export default createTheme({
         secondary: {
             main: `${backgroundColorLight}`,
         },
-
-
     },
     typography: {
         fontSize: 14,
@@ -33,7 +31,6 @@ export default createTheme({
         },
         h2: {
             fontWeight: 700,
-            // color: backgroundColorLight
         },
         h3: {
             fontFamily: "Roboto",
@@ -43,7 +40,6 @@ export default createTheme({
         },
         h4: {
             fontWeight: 700,
-
         },
         h5: {
             fontFamily: "Roboto",
@@ -52,30 +48,12 @@ export default createTheme({
             marginLeft: "auto",
             fontWeight: '400',
         },
-        // subtitle1: {
-        //     fontSize: '1.25rem',
-        //     fontWeight: '300',
-        //     color: arcGrey,
-        // },
-        // subtitle2: {
-        //     color: "#fff",
-        //     fontSize: '1.25rem',
-        //     fontWeight: '300'
-        // },
+
         body1: {
             fontSize: '1.5rem',
             color: "white",
             fontWeight: "400"
         },
-        // learnButton: {
-        //     borderColor: arcBlue,
-        //     color: arcBlue,
-        //     borderWidth: 2,
-        //     textTransform: "none",
-        //     borderRadius: 50,
-        //     fontFamily: "Roboto",
-        //     fontWeight: "bold",
-        // }
     },
     overrides: {
         MuiCardMedia: {
@@ -92,18 +70,18 @@ export default createTheme({
         },
         MuiSwitch: {
             root: {
-                marginLeft:"0.5em",
+                marginLeft: "0.5em",
                 width: 65,
                 height: 40
             },
             switchBase: {
                 transform: "scale(1.1)"
             },
-            thumb:{
-                transform: "scale(1.4)", 
+            thumb: {
+                transform: "scale(1.4)",
             },
-            track:{
-                width:"100px"
+            track: {
+                width: "100px"
             }
         }
     }

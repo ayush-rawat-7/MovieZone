@@ -12,8 +12,6 @@ import findImg from "../utilities/images/find-img.jpeg"
 import movieImg from "../utilities/images/xmen.jpeg"
 import showImg from "../utilities/images/the100.jpg"
 import axios from 'axios';
-
-
 export const Home = (props) => {
     const classes = useStyles();
     const theme = useTheme();
@@ -118,6 +116,7 @@ export const Home = (props) => {
                 {/* top part end */}
 
                 {/* second part start */}
+
                 <Grid
                     item
                     container
@@ -125,33 +124,37 @@ export const Home = (props) => {
                     className={classes.container}
                 >
                     {/* film houses start */}
-                    <Grid
-                        item
-                        container
-                        justifyContent="space-around"
-                        className={classes.backgroundColor}
-                    >
-                        <Grid item className={classes.filmHouse} md>
-                            <Typography align='center' variant="h5">
-                                Fox Pictures
-                            </Typography>
-                        </Grid>
-                        <Grid item className={classes.filmHouse} md>
-                            <Typography align='center' variant="h5">
-                                Universal studios
-                            </Typography>
-                        </Grid>
-                        <Grid item className={classes.filmHouse} md>
-                            <Typography align='center' variant="h5">
-                                Sony Pictures
-                            </Typography>
-                        </Grid>
-                        <Grid item className={classes.filmHouse} md>
-                            <Typography align='center' variant="h5">
-                                Disney
-                            </Typography>
-                        </Grid>
-                    </Grid>
+                    {
+                        matchesXS ? undefined :
+                            <Grid
+                                item
+                                container
+                                justifyContent="space-around"
+                                className={classes.backgroundColor}
+                            >
+                                <Grid item className={classes.filmHouse} md>
+                                    <Typography align='center' variant="h5">
+                                        Fox Pictures
+                                    </Typography>
+                                </Grid>
+                                <Grid item className={classes.filmHouse} md>
+                                    <Typography align='center' variant="h5">
+                                        Universal studios
+                                    </Typography>
+                                </Grid>
+                                <Grid item className={classes.filmHouse} md>
+                                    <Typography align='center' variant="h5">
+                                        Sony Pictures
+                                    </Typography>
+                                </Grid>
+                                <Grid item className={classes.filmHouse} md>
+                                    <Typography align='center' variant="h5">
+                                        Disney
+                                    </Typography>
+                                </Grid>
+                            </Grid>
+                    }
+
                     {/* film houses end */}
 
                     <Grid
