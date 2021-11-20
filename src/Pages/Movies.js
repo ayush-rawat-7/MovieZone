@@ -1,91 +1,31 @@
-import { Grid, makeStyles, Typography } from '@material-ui/core';
-import React, { useState } from 'react'
+import { Button, Grid, Typography } from '@material-ui/core';
+import React from 'react'
 import { Header } from "../components/Header"
 import { Footer } from "../components/Footer"
-import { data } from "../components/dummyData"
-
+import { GET_SEARCH_QUERY } from "../actions"
+import { useMovieContext } from "../context/movieContext"
+import { useStyles } from "../styles/movieStyles"
 import movieImg from "../utilities/images/guardian.jpg"
-
-const useStyles = makeStyles(theme => ({
-    toolbarMargin: {
-        ...theme.mixins.toolbar,
-        marginBottom: "2em"
-    },
-    rowContainer: {
-        backgroundColor: theme.palette.primary.main,
-        height: "80vh",
-        marginBottom: "1em"
-    },
-    backgroundContainer: {
-        height: "100%",
-        width: "100%",
-    },
-    searchContainer: {
-        position: "absolute",
-        marginTop: "10em",
-    },
-    searchBackground: {
-        width: "100%",
-        height: "100%",
-        objectFit: "fit",
-        opacity: "0.3",
-    },
-    movieHead: {
-        fontWeight: "800",
-        color: theme.palette.secondary.dark,
-    },
-    searchInput: {
-        display: "block",
-        width: "50%",
-        height: "2.5em",
-        border: "none",
-        margin: "1em auto",
-        borderRadius: "30px",
-        padding: "1px 20px 0px 20px",
-        outline: "none",
-        color: theme.palette.primary.light,
-        fontSize: "1.8rem",
-        "&::placeholder": {
-            color: theme.palette.primary.light,
-            fontSize: "1.8rem",
-        }
-    },
-    cardContainer: {
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        width: "22em",
-        margin: "1em 1em 0em 1em",
-        borderRadius: "15px",
-        backgroundImage: "linear-gradient(#fff, #111)",
-        boxShadow: "0px 0px 5px #111 , 0px 0px 5px 1px #111 inset",
-        "&:hover": {
-            backgroundImage: "linear-gradient(#ffffff, #16213E)",
-            cursor: "pointer"
-        }
-    },
-    movieImg: {
-        width: "100%",
-        height: "100%",
-        display: "block",
-        margin: "0px auto",
-        borderRadius: "15px 15px 0 0",
-    },
-    titleContainer: {
-        width: "90%",
-        margin: "auto",
-        textAlign: "center",
-        color: "white"
-    }
-}))
-
+import altPoster from "../utilities/images/altPoster.png"
+import { NavLink } from 'react-router-dom';
 
 export const Movies = () => {
     const classes = useStyles();
-    // search Query
-    const [query, setQuery] = useState("");
-    const dummy = data[0].results;
+    const {
+        popularMovies,
+        query,
+        getSearchedMovies,
+        dispatch,
+        moviesLoading,
+        moviesError,
+        searchedMovies
+    } = useMovieContext()
     const img_url = "https://image.tmdb.org/t/p/w500";
+    React.useEffect(() => {
+        getSearchedMovies(query);
+        // eslint-disable-next-line
+    }, [query])
+
     return (
         <>
             <Header />
@@ -112,23 +52,73 @@ export const Movies = () => {
                                 placeholder="Search Here"
                                 className={classes.searchInput}
                                 value={query}
-                                onChange={e => setQuery(e.target.value)}
+                                onChange={e => dispatch({ type: GET_SEARCH_QUERY, payload: e.target.value })}
                             />
                         </Grid>
                     </Grid>
                 </Grid>
 
                 {/* movies section */}
-                <Grid item container justifyContent='center' style={{ margin: "1em auto 5em auto" }} >
-                    {dummy.map(data => {
-                        return <div className={classes.cardContainer}>
-                            <img src={img_url + data.poster_path} className={classes.movieImg} alt="poster" />
-                            <div className={classes.titleContainer}>
-                                <h3 style={{ fontWeight: "500" }}>{data.title}</h3>
-                            </div>
-                        </div>
-                    })}
-                </Grid>
+
+                {
+                    moviesLoading ?
+                        <div className={classes.loading}></div>
+                        :
+                        moviesError ?
+                            <Grid item container direction="column" justifyContent="center">
+                                <Typography variant="h2" className={classes.errorContent}>Something Went Wrong!</Typography>
+                                <Button
+                                    variant="contained"
+                                    className={classes.errorButton}
+                                    onClick={() => window.location.reload()}
+                                >Try Again</Button>
+                            </Grid>
+                            :
+                            <Grid item container justifyContent='center' style={{ margin: "1em 0em 5em 0em" }} >
+                                {
+                                    searchedMovies && query ?
+                                        searchedMovies.length === 0 ?
+                                            <Grid item container direction="column" justifyContent="center">
+                                                <Typography variant="h2" className={classes.errorContent}>No Movies Found!</Typography>
+                                            </Grid>
+                                            :
+                                            searchedMovies.map((data, idx) => {
+                                                if (data.poster_path === null) {
+                                                    return <NavLink key={idx} to={`/movies/${data.id}`} className={classes.cardLink} style={{ margin: "15px 25px" }}>
+                                                        <div className={classes.cardContainer}  >
+                                                            <img src={altPoster} className={classes.movieImg} alt="poster" />
+                                                            <div className={classes.titleContainer}>
+                                                                <h3 style={{ fontWeight: "500" }}>{data.title}</h3>
+                                                            </div>
+                                                        </div>
+                                                    </NavLink>
+                                                } else {
+                                                    return <NavLink key={idx} to={`/movies/${data.id}`} className={classes.cardLink} style={{ margin: "15px 25px" }}>
+                                                        <div className={classes.cardContainer} >
+                                                            <img src={img_url + data.poster_path} className={classes.movieImg} alt="poster" />
+                                                            <div className={classes.titleContainer}>
+                                                                <h3 style={{ fontWeight: "500" }}>{data.title}</h3>
+                                                            </div>
+                                                        </div>
+                                                    </NavLink>
+                                                }
+
+                                            })
+                                        :
+                                        popularMovies.map((data, idx) => {
+                                            return <NavLink key={idx} to={`/movies/${data.id}`} className={classes.cardLink} style={{ margin: "15px 25px" }}>
+                                                <div className={classes.cardContainer} >
+                                                    <img src={img_url + data.poster_path} className={classes.movieImg} alt="poster" />
+                                                    <div className={classes.titleContainer}>
+                                                        <h3 style={{ fontWeight: "500" }}>{data.title}</h3>
+                                                    </div>
+                                                </div>
+                                            </NavLink>
+                                        })
+                                }
+                            </Grid>
+                }
+
             </Grid>
             <Footer />
         </>

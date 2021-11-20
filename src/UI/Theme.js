@@ -1,6 +1,4 @@
 import { createTheme } from "@material-ui/core";
-import { lightBlue } from "@material-ui/core/colors";
-
 const backgroundColor = "#16213E";
 const backgroundColorLight = "#FF3745";
 export default createTheme({
@@ -92,5 +90,21 @@ export default createTheme({
                 height: "auto",
             }
         },
+        MuiSwitch: {
+            root: {
+                marginLeft:"0.5em",
+                width: 65,
+                height: 40
+            },
+            switchBase: {
+                transform: "scale(1.1)"
+            },
+            thumb:{
+                transform: "scale(1.4)", 
+            },
+            track:{
+                width:"100px"
+            }
+        }
     }
 })

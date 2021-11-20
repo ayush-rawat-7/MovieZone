@@ -1,213 +1,17 @@
-import { Button, Grid, makeStyles, Typography, useMediaQuery, useTheme } from '@material-ui/core';
+import { Button, Grid, Snackbar, Typography, useMediaQuery, useTheme } from '@material-ui/core';
 import React from 'react'
 import { Header } from "../components/Header"
 import { Footer } from "../components/Footer"
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
-import emailjs from "emailjs-com"
-import { init } from 'emailjs-com';
+import { useStyles } from "../styles/homeStyles"
 
 import homeImg from "../utilities/images/homePage.jpg"
 import search from "../utilities/images/search-flat.png"
 import findImg from "../utilities/images/find-img.jpeg"
-import movieImg from "../utilities/images/movie-background.jfif"
-
-init(process.env.REACT_APP_EMAIL_JS);
-
-const useStyles = makeStyles(theme => ({
-    toolbarMargin: {
-        ...theme.mixins.toolbar,
-        marginBottom: "3em",
-        [theme.breakpoints.down('md')]: {
-            marginBottom: "2em"
-        },
-        [theme.breakpoints.down('xs')]: {
-            marginBottom: "0.9em"
-        },
-    },
-    homeImg: {
-        width: "500px",
-        [theme.breakpoints.down('md')]: {
-            width: "400px"
-        },
-        [theme.breakpoints.down('xs')]: {
-            width: '250px'
-        }
-    },
-    searchImg: {
-        width: "400px",
-        [theme.breakpoints.down('md')]: {
-            width: '300px'
-        },
-        [theme.breakpoints.down('xs')]: {
-            width: "200px"
-        }
-    },
-    findImg: {
-        width: "460px",
-        // height: "420px",
-        [theme.breakpoints.down('md')]: {
-            width: '340px',
-
-        },
-        [theme.breakpoints.down('xs')]: {
-            width: '200px'
-        }
-    },
-    rowContainer: {
-        paddingTop: "5em",
-        paddingBottom: "5em",
-        backgroundColor: theme.palette.primary.main
-    },
-    backgroundColor: {
-        backgroundColor: "#C6C6C6",
-        paddingTop: "0.8em",
-        paddingBottom: "0.8em"
-    },
-    filmHouse: {
-        width: "18em",
-        height: "35px",
-        backgroundColor: "#0F3460",
-        color: "#fff",
-        borderRadius: "5px",
-        margin: "0 1em",
-        [theme.breakpoints.down('sm')]: {
-            marginTop: "0.5em",
-            marginBottom: "0.5em",
-        },
-    },
-    underline: {
-        width: "50vw",
-        margin: "auto",
-        height: '2px',
-        background: '#000',
-        marginBottom: '0.9em',
-    },
-    choiceHead: {
-        color: "#fff",
-        marginTop: "0.9em",
-    },
-    choiceUnderline: {
-        width: "50vw",
-        margin: "auto",
-        height: '1px',
-        background: '#C0F0FF',
-        marginBottom: '0.9em',
-        marginTop: "1.5em"
-    },
-    card: {
-        position: 'relative',
-    },
-    cardContainer: {
-        width: "60em",
-        marginTop: "8em",
-        marginBottom: "8em",
-        [theme.breakpoints.down('md')]: {
-            marginLeft: "1.5em",
-            marginRight: "1.5em",
-        },
-        [theme.breakpoints.down('sm')]: {
-            marginTop: "5em",
-            marginBottom: "5em",
-        },
-        [theme.breakpoints.down('xs')]: {
-            marginTop: "3em",
-            marginBottom: "3em",
-        }
-    },
-    cardMedia: {
-        height: 400,
-        maxWidth: 800,
-        width: 500,
-        maxHeight: 600,
-        display: 'block',
-        margin: "auto",
-        borderRadius: "50px",
-        objectFit: "fill",
-        [theme.breakpoints.down('md')]: {
-            width: 500,
-        },
-        [theme.breakpoints.down('xs')]: {
-            width: 250,
-            height: 200
-        }
-
-    },
-    form: {
-        display: "flex",
-        flexDirection: "column",
-    },
-    typo: {
-        color: "#fff",
-        fontSize: "3.2em",
-        marginTop: "0.5em"
-    },
-    emailContainer: {
-        width: "45vw",
-        margin: "auto",
-        height: "72px",
-        maxWidth: "100em",
-        borderRadius: 25,
-        backgroundColor: "#DEEBFF",
-        border: "none",
-        paddingLeft: "1em",
-        paddingRight: "1em",
-        fontSize: "1.8rem",
-        fontWeight: "bold",
-        marginTop: "1em",
-        marginBottom: "1em",
-        [theme.breakpoints.down('sm')]: {
-            width: "50vw",
-            height: "65px",
-            paddingLeft: "0.5em",
-            paddingRight: "0.5em",
-            fontSize: "1.4em",
-            marginTop: "1.5em"
-        },
-        [theme.breakpoints.down('xs')]: {
-            width: "60vw",
-            fontSize: "1.1em",
-            height: "40px"
-        }
-    },
-    textarea: {
-        width: "64.5vw",
-        padding: "0.5em",
-        height: "500px",
-        margin: "auto",
-        maxWidth: "100em",
-        fontSize: "1.8rem",
-        backgroundColor: "#DCF7FF",
-        border: "none",
-        borderRadius: 25,
-        [theme.breakpoints.down('sm')]: {
-            height: "300px",
-            width: "70vw"
-        },
-        [theme.breakpoints.down('xs')]: {
-            height: "180px",
-            width: "80vw"
-        }
-    },
-    submit: {
-        width: "24vw",
-        margin: "auto",
-        marginTop: "1.5em",
-        marginBottom: "2em",
-        border: 'none',
-        backgroundColor: "#183F63",
-        color: "#fff",
-        borderRadius: 25,
-        height: "2.6em",
-        fontSize: "1.5em",
-        textTransform: "none",
-        maxWidth: "20em",
-        "&:hover": {
-            backgroundColor: theme.palette.primary.main
-        },
-        minWidth: "200px"
-    },
-}))
+import movieImg from "../utilities/images/xmen.jpeg"
+import showImg from "../utilities/images/the100.jpg"
+import axios from 'axios';
 
 
 export const Home = (props) => {
@@ -216,22 +20,38 @@ export const Home = (props) => {
     const { user } = useAuth0();
     const [email, setEmail] = React.useState(user.email ? user.email : "");
     const [message, setMessage] = React.useState("");
-    // const matchesMD = useTheme(theme.breakpoints.down('md'));
+    const [alert, setAlert] = React.useState({ open: false, message: "", backgroundColor: "" });
+
     const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
     const matchesXS = useMediaQuery(theme.breakpoints.down('xs'));
-    const form = React.useRef()
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(message === ""){
+        if (message === "") {
             window.alert("Please Write message before sending the feedback");
             return
         }
-        emailjs.send("service_zpj6uqf", "template_iwtt6mn", {
-            from_name: email,
-            message: message,
-        });
-        window.alert("Thank You, Your response has been submitted.")
-        setMessage('')
+        const encodedEmail = encodeURIComponent(email)
+        const encodedMessage = encodeURIComponent(message)
+        axios
+            .get(`/.netlify/functions/emailHandler?email=${encodedEmail}&message=${encodedMessage}`
+            )
+            .then(res => {
+                setMessage("");
+                setAlert({
+                    open: true,
+                    message: "Message Sent Successfully",
+                    backgroundColor: "#4bb543"
+                });
+            })
+            .catch(err => {
+                setAlert({
+                    open: true,
+                    message: "Something Went Wrong, Please Try Again",
+                    backgroundColor: "#ff3232"
+                })
+            });
+
     }
 
     return (
@@ -340,7 +160,7 @@ export const Home = (props) => {
                         direction='column'
                         className={classes.container}
                     >
-                        <Grid item direction="column">
+                        <Grid item container direction="column">
                             <Typography
                                 style={{
                                     marginTop: "1em",
@@ -443,7 +263,7 @@ export const Home = (props) => {
                     className={classes.container}
                     style={{ backgroundColor: "#0F3460" }}
                 >
-                    <Grid item direction="column">
+                    <Grid item container direction="column">
                         <Typography
                             align="center"
                             variant="h2"
@@ -465,49 +285,43 @@ export const Home = (props) => {
                         container
                         justifyContent="center"
                     >
-                        <Grid item className={classes.cardContainer} md>
-                            <div className={classes.card}>
-                                <img className={classes.cardMedia} src={movieImg} alt="" />
-                            </div>
-                            <Link
-                                to="/movies"
-                                style={{ textDecoration: 'none' }}
-                            >
-                                <Typography
-                                    variant="h2"
-                                    align='center'
-                                    style={{
-                                        top: "3.8em",
-                                        left: "5.5em",
-                                        fontSize: matchesSM ? "2.5em" : undefined
-                                    }}
-                                    className={classes.typo}
+                        <Grid item container className={classes.cardContainer} md>
+                            <Grid item style={{ margin: "auto", position: "relative" }}>
+                                <Link
+                                    to="/movies"
+                                    style={{ textDecoration: 'none' }}
                                 >
-                                    Movies
-                                </Typography>
-                            </Link>
+                                    <div className={classes.card}>
+                                        <img className={classes.cardMedia} src={movieImg} alt="" />
+                                    </div>
+                                    <Typography
+                                        variant="h2"
+                                        align='center'
+                                        className={classes.moviesTypo}
+                                    >
+                                        Movies
+                                    </Typography>
+                                </Link>
+                            </Grid>
                         </Grid>
-                        <Grid item className={classes.cardContainer} md>
-                            <div className={classes.card}>
-                                <img className={classes.cardMedia} src={homeImg} alt="" />
-                            </div>
-                            <Link
-                                to="/shows"
-                                style={{ textDecoration: 'none' }}
-                            >
-                                <Typography
-                                    variant="h2"
-                                    align='center'
-                                    style={{
-                                        top: "3.8em",
-                                        left: "4.59em",
-                                        fontSize: matchesSM ? "2.5em" : undefined
-                                    }}
-                                    className={classes.typo}
+                        <Grid item container className={classes.cardContainer} md >
+                            <Grid item style={{ margin: "auto", position: "relative" }}>
+                                <Link
+                                    to="/shows"
+                                    style={{ textDecoration: 'none' }}
                                 >
-                                    TV Shows
-                                </Typography>
-                            </Link>
+                                    <div className={classes.card}>
+                                        <img className={classes.cardMedia} src={showImg} alt="" />
+                                    </div>
+                                    <Typography
+                                        variant="h2"
+                                        align='center'
+                                        className={classes.showsTypo}
+                                    >
+                                        TV Shows
+                                    </Typography>
+                                </Link>
+                            </Grid>
                         </Grid>
                     </Grid>
                 </Grid>
@@ -536,16 +350,12 @@ export const Home = (props) => {
                         {/* <div className={classes.underline}></div> */}
                     </Grid>
                     <Grid item>
-                        <form
-                            ref={form}
-                            className={classes.form}
-                            onSubmit={handleSubmit}
-                        >
+                        <form className={classes.form} onSubmit={handleSubmit}>
                             <input
                                 type="email"
-                                name="from_name"
                                 placeholder="E-mail"
                                 value={email}
+                                disabled
                                 onChange={(e) => setEmail(e.target.value)}
                                 className={classes.emailContainer}
                             />
@@ -572,6 +382,14 @@ export const Home = (props) => {
                     </Grid>
                 </Grid>
                 {/* feedback part end */}
+                <Snackbar
+                    open={alert.open}
+                    message={alert.message}
+                    ContentProps={{ style: { backgroundColor: alert.backgroundColor } }}
+                    anchorOrigin={{ vertical: "top", horizontal: "center", textAlign: "center" }}
+                    onClose={() => setAlert({ ...alert, open: false })}
+                    autoHideDuration={3000}
+                />
             </Grid>
             <Footer />
         </>

@@ -8,11 +8,11 @@ const useStyles = makeStyles(theme => ({
         height: "12em",
         backgroundColor: theme.palette.primary.main,
         width: "100%",
-        [theme.breakpoints.down('sm')]:{
-            height:"15em"
+        [theme.breakpoints.down('sm')]: {
+            height: "15em"
         },
-        [theme.breakpoints.down('xs')]:{
-            height:"10em"
+        [theme.breakpoints.down('xs')]: {
+            height: "10em"
         }
     },
     logo: {
@@ -41,7 +41,7 @@ const useStyles = makeStyles(theme => ({
     },
     footerContent: {
         fontWeight: 300,
-        [theme.breakpoints.down('xs')]:{
+        [theme.breakpoints.down('xs')]: {
             fontSize: '1em',
         }
     },

@@ -5,6 +5,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import MenuIcon from "@material-ui/icons/Menu"
 import logo from "../utilities/images/nav-logo.jpg"
+import { useMovieContext } from "../context/movieContext";
+import { useShowsContext } from '../context/showsContext'
 
 function ElevationScroll(props) {
     const { children } = props
@@ -14,7 +16,7 @@ function ElevationScroll(props) {
     })
 
     return React.cloneElement(children, {
-        elevation: trigger ? 0: 0
+        elevation: trigger ? 0 : 0
     })
 }
 
@@ -77,9 +79,9 @@ const useStyles = makeStyles(theme => ({
         color: "#ffeded",
         backgroundColor: theme.palette.secondary.main,
         borderRadius: "5px",
-        [theme.breakpoints.down('xs')]:{
-            height:"40px",
-            width:"40px"
+        [theme.breakpoints.down('xs')]: {
+            height: "40px",
+            width: "40px"
         }
     },
     drawerIconContainer: {
@@ -122,6 +124,10 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export const Header = () => {
+    const { single_movie } = useMovieContext();
+    const { single_show } = useShowsContext();
+    const { id } = single_movie;
+    const { id: idx } = single_show;
     const classes = useStyles();
     const theme = useTheme();
     const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent)
@@ -143,10 +149,16 @@ export const Header = () => {
         else if (window.location.pathname === "/movies" && value !== 1) {
             setValue(1);
         }
+        else if (window.location.pathname === `/movies/${id}` && value !== 1) {
+            setValue(1);
+        }
         if (window.location.pathname === "/shows" && value !== 2) {
             setValue(2);
         }
-    }, [value])
+        if (window.location.pathname === `/shows/${id}` && value !== 2) {
+            setValue(2);
+        }
+    }, [value, id, idx])
 
     const tabs = (
         <>
@@ -160,7 +172,7 @@ export const Header = () => {
                     className={classes.tab}
                     label="Home"
                     component={Link}
-                    to="/"
+                    to="/home"
                 />
                 <Tab
                     className={classes.tab}
