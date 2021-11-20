@@ -33,7 +33,7 @@ function App() {
               <Route exact path="/movies/:id">
                 <SingleMovie />
               </Route>
-              <Route exact path="/*">
+              <Route>
                 <Error />
               </Route>
             </Switch>

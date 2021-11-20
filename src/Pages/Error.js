@@ -5,7 +5,6 @@ import { useStyles } from '../styles/errorStyles'
 
 import error from "../utilities/images/error.jpg"
 
-
 export const Error = () => {
     const classes = useStyles();
     return (
