@@ -167,7 +167,7 @@ export const Header = () => {
                     className={classes.tab}
                     label="Home"
                     component={Link}
-                    to="/home"
+                    to="/"
                 />
                 <Tab
                     className={classes.tab}
