@@ -151,7 +151,7 @@ export const Header = () => {
         if (window.location.pathname === "/shows" && value !== 2) {
             setValue(2);
         }
-        if (window.location.pathname === `/shows/${id}` && value !== 2) {
+        if (window.location.pathname === `/shows/${idx}` && value !== 2) {
             setValue(2);
         }
     }, [value, id, idx])
